@@ -68,3 +68,15 @@ SELECT * FROM autors;
 
 UPDATE projects SET photoProject = "https://www.workmeter.com/wp-content/uploads/2018/05/medicion-de-resultados-de-un-proyecto-1-scaled.jpg"
 WHERE idProjects > 0;
+
+ALTER TABLE projects
+ADD fk_autors INT NOT NULL;
+
+UPDATE projects
+SET fk_autors = 3
+WHERE idProjects = 4;
+
+SELECT projects.nameProject, autors.nameAutor
+FROM projects, autors
+WHERE fk_autors = idAutor;
+
