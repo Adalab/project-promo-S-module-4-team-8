@@ -1,0 +1,12 @@
+.header {
+  background-color: #302c42;
+  &__image {
+    transform: scale(78%);
+    align-self: center;
+  }
+  &__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
