@@ -111,3 +111,18 @@ UPDATE autors
 SET image = 'https://i.postimg.cc/zvf3WzWJ/imagen-del-perfil-personaje-de-dibujos-animados-avatar-la-mujer-joven-morena-con-dise-o-gr-fico-ejem.jpg'
 WHERE idAutor = 3;
 COMMIT;
+
+START TRANSACTION;
+UPDATE projects
+SET photo = 'https://i.postimg.cc/RhNmTN0Z/Captura-de-pantalla-2023-04-02-124615.png'
+WHERE idProjects = 1;
+UPDATE projects
+SET photo = 'https://i.postimg.cc/RVTrn7dL/Captura-de-pantalla-2023-04-02-124808.png'
+WHERE idProjects = 2;
+UPDATE projects
+SET photo = 'https://i.postimg.cc/mZNpdb9b/Captura-de-pantalla-2023-04-02-125021.png'
+WHERE idProjects = 3;
+UPDATE projects
+SET photo = 'https://i.postimg.cc/BZkbV0fV/Captura-de-pantalla-2023-04-02-125138.png'
+WHERE idProjects = 4;
+COMMIT;
