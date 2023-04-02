@@ -13,7 +13,7 @@ const dataApi = (data) => {
 
 // obtener el listado
 
-const listPorjectApi = () => {
+const listProjectApi = () => {
   return fetch('http://localhost:4000/api/projects/all')
     .then(response => response.json())
     .then(data => {
@@ -23,4 +23,4 @@ const listPorjectApi = () => {
 }
 
 
-export default { dataApi, listPorjectApi };
+export default { dataApi, listProjectApi };

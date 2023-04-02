@@ -80,3 +80,34 @@ SELECT projects.nameProject, autors.nameAutor
 FROM projects, autors
 WHERE fk_autors = idAutor;
 
+USE `freedb_project-mod-4-tema-8`;
+
+START TRANSACTION;
+ALTER TABLE autors
+RENAME COLUMN nameAutor TO autor,
+RENAME COLUMN jobAutor TO job,
+RENAME COLUMN imageAutor TO image;
+COMMIT;
+
+START TRANSACTION;
+ALTER TABLE projects
+RENAME COLUMN nameProject TO name,
+RENAME COLUMN sloganProject TO slogan,
+RENAME COLUMN repoProject TO repo,
+RENAME COLUMN demoProject TO demo,
+RENAME COLUMN technoProject TO technologies,
+RENAME COLUMN descProject TO description,
+RENAME COLUMN photoProject TO photo;
+COMMIT;
+
+START TRANSACTION;
+UPDATE autors
+SET image = 'https://i.postimg.cc/ZKK5D5WZ/c6a90563dc9c842409ae451f7623f42f.png'
+WHERE idAutor = 1;
+UPDATE autors
+SET image = 'https://i.postimg.cc/PqZDr5b9/avatar2.png'
+WHERE idAutor = 2;
+UPDATE autors
+SET image = 'https://i.postimg.cc/zvf3WzWJ/imagen-del-perfil-personaje-de-dibujos-animados-avatar-la-mujer-joven-morena-con-dise-o-gr-fico-ejem.jpg'
+WHERE idAutor = 3;
+COMMIT;

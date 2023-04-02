@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import objectToExport from "../../services/localStorage";
+// import objectToExport from "../../services/localStorage";
 import CardList from "./CardList";
 import api from '../../services/api'
 import "../../styles/layout/Landing.scss";
@@ -7,11 +7,11 @@ import { useEffect, useState } from 'react';
 
 function Landing({ foundCard, idCard }) {
   // const projectsCard = objectToExport.get("cardsLs", []);
-  const [cardsToShow, setProjectsCard] = useState([])
-  // const cardsToShow = projectsCard.slice(0, 4);
+  const [projectsCard, setProjectsCard] = useState([])
+  const cardsToShow = projectsCard.slice(0, 4);
 
   useEffect(() => {
-    api.listPorjectApi()
+    api.listProjectApi()
       .then(data => {
         console.log(data);
         setProjectsCard(data)

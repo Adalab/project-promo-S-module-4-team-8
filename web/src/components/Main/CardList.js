@@ -6,7 +6,7 @@ function CardList({ cardsToShowP }) {
     return (
       <li className="eachCard" key={index}>
         <Link to={`/card/` + index}>
-          <Card data={eachCard} avatar={eachCard.photo} />
+          <Card data={eachCard} avatar={eachCard.image} />
         </Link>
       </li>
     );

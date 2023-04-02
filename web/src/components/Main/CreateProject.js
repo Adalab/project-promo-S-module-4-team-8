@@ -1,4 +1,4 @@
-import dataApi from "../../services/api";
+import api from "../../services/api";
 import { useState } from "react";
 import Preview from "./Preview";
 import Form from "./Form";
@@ -93,7 +93,7 @@ function CreateProject({ projectsCard }) {
   };
 
   const handleSend = () => {
-    dataApi(data).then((info) => {
+    api.dataApi(data).then((info) => {
       console.log(info);
       if (!info.success) {
         if (info.error.includes("Mandatory fields:")) {
