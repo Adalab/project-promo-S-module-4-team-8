@@ -14,7 +14,7 @@ function Card({ data, avatar, imageProfile }) {
           {data.slogan || "Emprende tus proyectos sin límites"}
         </p>
         <p className="preview__autor__info-project--desc">
-          {data.description ||
+          {data.desc ||
             "Nuestra web es un gestor de proyectos online que te permite organizar tus proyectos de forma inteligente y eficiente con solo crear una tarjeta para cada uno."}
         </p>
         <div className="preview__autor__info-project--technologies">
