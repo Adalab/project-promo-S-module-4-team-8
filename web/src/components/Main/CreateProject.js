@@ -2,11 +2,10 @@ import api from "../../services/api";
 import { useState } from "react";
 import Preview from "./Preview";
 import Form from "./Form";
-import objectToExport from "../../services/localStorage";
 import imageProfile from "../../images/secretaria.png";
 import imageProject from "../../images/project.jpg";
 
-function CreateProject({ projectsCard }) {
+function CreateProject() {
   const [data, setData] = useState({
     name: "",
     slogan: "",
@@ -120,8 +119,6 @@ function CreateProject({ projectsCard }) {
       } else if (info.success) {
         setUrl(info.cardURL);
         setInfo(info);
-        projectsCard.push(data);
-        objectToExport.set("cardsLs", projectsCard);
       }
     });
   };

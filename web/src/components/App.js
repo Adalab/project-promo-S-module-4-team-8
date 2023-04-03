@@ -6,22 +6,22 @@ import Footer from "./Footer/Footer";
 import CreateProject from "./Main/CreateProject";
 import Landing from "./Main/Landing";
 import CardDetail from "./Main/CardDetail";
-// import objectToExport from "../services/localStorage";
-// import { useLocation, matchPath } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import api from '../services/api';
 
 function App() {
-  // const projectsCard = objectToExport.get("cardsLs", []);
 
-  // const cardsToShow = projectsCard.slice(0, 4);
-  // console.log(cardsToShow);
-  // const { pathname } = useLocation();
-  // const routeData = matchPath("/card/:id", pathname);
-  // const cardId = routeData !== null ? routeData.params.id : "";
-  // console.log(cardId);
+  const [projectsCard, setProjectsCard] = useState([])
+  const cardsToShow = projectsCard.slice(0, 4);
 
-  // const foundCard = cardsToShow.find((index) => index === cardId);
+  useEffect(() => {
+    api.listProjectApi()
+      .then(data => {
+        console.log(data);
+        setProjectsCard(data)
+      })
+  }, []);
 
-  // console.log(foundCard);
   return (
     <>
       <Header></Header>
@@ -29,15 +29,15 @@ function App() {
         <Route
           path="/card/:id"
           element={<CardDetail
-          //foundCard={foundCard} 
+            cardsToShow={cardsToShow}
           />}
         />
         <Route
           path="/create"
-          element={<CreateProject //projectsCard={projectsCard} 
+          element={<CreateProject
           />}
         />
-        <Route path="/" element={<Landing //foundCard={foundCard} 
+        <Route path="/" element={<Landing cardsToShow={cardsToShow}
         />} />
       </Routes>
       <Footer logo={logo}></Footer>
