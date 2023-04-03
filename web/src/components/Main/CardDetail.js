@@ -1,9 +1,10 @@
+// import Card from './Card';
 
 function CardDetail({ foundCard }) {
   return (
     <div>
-      {/* <Preview foundCard={(foundCard = { foundCard })} /> */}
       <p>hola</p>
+      {/* <Card /> */}
     </div>
   );
 }

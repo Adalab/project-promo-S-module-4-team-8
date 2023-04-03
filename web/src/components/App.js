@@ -6,20 +6,20 @@ import Footer from "./Footer/Footer";
 import CreateProject from "./Main/CreateProject";
 import Landing from "./Main/Landing";
 import CardDetail from "./Main/CardDetail";
-import objectToExport from "../services/localStorage";
-import { useLocation, matchPath } from "react-router-dom";
+// import objectToExport from "../services/localStorage";
+// import { useLocation, matchPath } from "react-router-dom";
 
 function App() {
-  const projectsCard = objectToExport.get("cardsLs", []);
+  // const projectsCard = objectToExport.get("cardsLs", []);
 
-  const cardsToShow = projectsCard.slice(0, 4);
-  console.log(cardsToShow);
-  const { pathname } = useLocation();
-  const routeData = matchPath("/card/:id", pathname);
-  const cardId = routeData !== null ? routeData.params.id : "";
-  console.log(cardId);
+  // const cardsToShow = projectsCard.slice(0, 4);
+  // console.log(cardsToShow);
+  // const { pathname } = useLocation();
+  // const routeData = matchPath("/card/:id", pathname);
+  // const cardId = routeData !== null ? routeData.params.id : "";
+  // console.log(cardId);
 
-  const foundCard = cardsToShow.find((index) => index === cardId);
+  // const foundCard = cardsToShow.find((index) => index === cardId);
 
   // console.log(foundCard);
   return (
@@ -28,13 +28,17 @@ function App() {
       <Routes>
         <Route
           path="/card/:id"
-          element={<CardDetail foundCard={foundCard} />}
+          element={<CardDetail
+          //foundCard={foundCard} 
+          />}
         />
         <Route
           path="/create"
-          element={<CreateProject projectsCard={projectsCard} />}
+          element={<CreateProject //projectsCard={projectsCard} 
+          />}
         />
-        <Route path="/" element={<Landing foundCard={foundCard} />} />
+        <Route path="/" element={<Landing //foundCard={foundCard} 
+        />} />
       </Routes>
       <Footer logo={logo}></Footer>
     </>

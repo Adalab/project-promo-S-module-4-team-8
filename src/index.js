@@ -14,6 +14,9 @@ server.listen(serverPort, () => {
   console.log(`Server listening at http://localhost:${serverPort}`);
 });
 
+//servidor de estáticos
+// server.use(express.static('web/public'));
+
 //crear conexión con base de datos
 
 let connection;  // Aquí almacenaremos la conexión a la base de datos
