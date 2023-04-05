@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestor de proyectos</title>
+    <script
+      src="https://kit.fontawesome.com/8841dc85f6.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="cardDetail">
+      <!-- <img
+        class="preview__autor__info-autor--image"
+        alt="Foto proyecto"
+        src="<%"
+        ="photo%"
+      />
+      /> -->
+      <img />
+      <div class="cardDetail__photo"></div>
+      <article class="preview__autor cardDetail__autor">
+        <div class="preview__autor__info-project">
+          <p class="preview__autor__info-project--subtitle">
+            Personal Project Card
+          </p>
+          <h2 class="preview__autor__info-project--title"><%= name %></h2>
+          <p class="preview__autor__info-project--slogan"><%= slogan %></p>
+          <p class="preview__autor__info-project--desc"><%= description %></p>
+          <div class="preview__autor__info-project--technologies">
+            <p class="preview__autor__info-project--technologies--text">
+              <%= technologies %>
+            </p>
+          </div>
+          <div class="preview__autor__info-project--icons">
+            <a class="cardLink" href="<%" ="repo" %>
+              target="_blank">
+              <i class="fa-brands fa-github-alt"></i>
+            </a>
+            <a
+              class="cardLink"
+              href="{data.demo}"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i class="fa-solid fa-globe"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="preview__autor__info-autor">
+          <!-- {/* <Profile imageProfile={imageProfile} avatar={avatar}
+          class="preview__autor__info-autor--image" /> */} -->
+          <p class="preview__autor__info-autor--job">
+            {/* {data.job || "Full Stack Developer"} */}
+          </p>
+          <p class="preview__autor__info-autor--name">
+            {/* {data.autor || "Pepa Miguez"} */}
+          </p>
+        </div>
+      </article>
+    </div>
+  </body>
+</html>

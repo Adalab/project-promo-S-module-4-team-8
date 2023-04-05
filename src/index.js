@@ -7,6 +7,7 @@ const mysql = require("mysql2/promise");
 const server = express();
 server.use(cors());
 server.use(express.json({ limit: "10mb" }));
+server.set("view engine", "ejs")
 
 //arrancar el servidor
 const serverPort = 4000;
@@ -48,11 +49,11 @@ server.get("/api/projects/all", (req, res) => {
     "SELECT * FROM projects, autors WHERE projects.fk_autors = autors.idAutor";
   connection
     .query(sql)
-    .then(([results, fields]) => {
-      console.log("Información recuperada:");
-      results.forEach((result) => {
-        console.log(result);
-      });
+    .then(([results]) => {
+      // console.log("Información recuperada:");
+      // results.forEach((result) => {
+      // console.log(result);
+      // });
 
       res.json(results);
     })
@@ -63,14 +64,14 @@ server.get("/api/projects/all", (req, res) => {
 
 server.post("/api/projects/add", (req, res) => {
   const data = req.body;
-  console.log(data);
+  // console.log(data);
   let sqlAutor = "insert into autors (autor, job, image ) values (?, ?, ?)";
   let valuesAutor = [data.autor, data.job, data.image];
 
   connection
     .query(sqlAutor, valuesAutor)
     .then(([results]) => {
-      console.log(results);
+      // console.log(results);
       let sqlProject =
         "insert into projects (name, slogan, repo, demo, technologies, description, photo, fk_autors ) values (?, ?, ?, ?, ?, ?, ?, ?)";
       let valuesProject = [
@@ -100,14 +101,21 @@ server.post("/api/projects/add", (req, res) => {
       throw err;
     });
 });
-// server.get("/api/project/:id", (req, res) => {
-//   const relativePath = "./web/src/components/Main/CardDetail.js";
-//   const absolutePath
-//   connection
-//     .query("SELECT * FROM projects, autors WHERE id=?", [req.params.id])
-//     .then(([results]) => {
-//       res.render();
-//     });
-// });
+
+server.get("/api/projects/detail/:projectId", (req, res) => {
+  const projectId = req.params.projectId;
+  console.log(projectId);
+  const sql = "SELECT * FROM projects, autors WHERE projects.fk_autors = autors.idAutor AND idProjects = ?";
+  connection
+    .query(sql, [projectId])
+    .then(([results]) => {
+      console.log(results);
+      res.render('project_detail', results[0]);
+    })
+    .catch((err) => {
+      throw err;
+    });
+});
+
 //servidor de estáticos
 server.use(express.static("./src/public-react"));
