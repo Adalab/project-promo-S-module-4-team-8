@@ -4,61 +4,61 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestor de proyectos</title>
     <script
       src="https://kit.fontawesome.com/8841dc85f6.js"
       crossorigin="anonymous"
     ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="/main.css" rel="stylesheet" />
+    <title>Gestor de poyectos</title>
   </head>
   <body>
-    <div class="cardDetail">
-      <!-- <img
-        class="preview__autor__info-autor--image"
+    <div className="cardDetail">
+      <img
+        src="<%= photo %>"
         alt="Foto proyecto"
-        src="<%"
-        ="photo%"
+        className="cardDetail__photo"
       />
-      /> -->
-      <img />
-      <div class="cardDetail__photo"></div>
-      <article class="preview__autor cardDetail__autor">
-        <div class="preview__autor__info-project">
-          <p class="preview__autor__info-project--subtitle">
+      <!-- <div className="cardDetail__photo"></div> -->
+      <article className="preview__autor cardDetail__autor">
+        <div className="preview__autor__info-project">
+          <p className="preview__autor__info-project--subtitle">
             Personal Project Card
           </p>
-          <h2 class="preview__autor__info-project--title"><%= name %></h2>
-          <p class="preview__autor__info-project--slogan"><%= slogan %></p>
-          <p class="preview__autor__info-project--desc"><%= description %></p>
-          <div class="preview__autor__info-project--technologies">
-            <p class="preview__autor__info-project--technologies--text">
+          <h2 className="preview__autor__info-project--title"><%= name %></h2>
+          <p className="preview__autor__info-project--slogan"><%= slogan %></p>
+          <p className="preview__autor__info-project--desc">
+            <%= description %>
+          </p>
+          <div className="preview__autor__info-project--technologies">
+            <p className="preview__autor__info-project--technologies--text">
               <%= technologies %>
             </p>
           </div>
-          <div class="preview__autor__info-project--icons">
-            <a class="cardLink" href="<%" ="repo" %>
-              target="_blank">
-              <i class="fa-brands fa-github-alt"></i>
+          <div className="preview__autor__info-project--icons">
+            <a className="cardLink" href="<%= repo %>" target="_blank">
+              <i className="fa-brands fa-github-alt"></i>
             </a>
             <a
-              class="cardLink"
-              href="{data.demo}"
+              className="cardLink"
+              href="<%= demo %>"
               target="_blank"
               rel="noreferrer"
             >
-              <i class="fa-solid fa-globe"></i>
+              <i className="fa-solid fa-globe"></i>
             </a>
           </div>
         </div>
 
-        <div class="preview__autor__info-autor">
-          <!-- {/* <Profile imageProfile={imageProfile} avatar={avatar}
-          class="preview__autor__info-autor--image" /> */} -->
-          <p class="preview__autor__info-autor--job">
-            {/* {data.job || "Full Stack Developer"} */}
-          </p>
-          <p class="preview__autor__info-autor--name">
-            {/* {data.autor || "Pepa Miguez"} */}
-          </p>
+        <div className="preview__autor__info-autor">
+          <img
+            src="<%= image %>"
+            alt="Foto autora"
+            class="preview__autor__info-autor--image"
+          />
+          <p className="preview__autor__info-autor--job"><% job %></p>
+          <p className="preview__autor__info-autor--name"><% autor %></p>
         </div>
       </article>
     </div>

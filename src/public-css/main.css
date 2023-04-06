@@ -1,0 +1,31 @@
+.cardDetail {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .cardDetail__photo {
+  min-height: 40vh;
+  width: 80vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (min-width: 768px) {
+  .cardDetail__photo {
+    min-height: 60vh;
+  }
+}
+
+.cardDetail__autor {
+  transform: translateY(50px);
+  width: 80vw;
+}
+
+@media (min-width: 768px) {
+  .cardDetail__autor {
+    width: 70vw;
+  }
+} */

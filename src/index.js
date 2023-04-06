@@ -119,3 +119,4 @@ server.get("/api/projects/detail/:projectId", (req, res) => {
 
 //servidor de estáticos
 server.use(express.static("./src/public-react"));
+server.use(express.static("./src/public-css/"));
