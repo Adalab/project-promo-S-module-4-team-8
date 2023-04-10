@@ -5,10 +5,10 @@ function CardList({ cardsToShowP }) {
   const loqsea = cardsToShowP.map((eachCard) => {
     return (
       <li className="eachCard" key={eachCard.idProjects}>
-        <Link to={`/card/` + eachCard.idProjects}>
+        <a href={'http://localhost:4000/api/projects/detail/' + eachCard.idProjects}>
           <Card data={eachCard} avatar={eachCard.image} />
-        </Link>
-      </li>
+        </a>
+      </li >
     );
   });
   return <ul className="ulCard">{loqsea}</ul>;

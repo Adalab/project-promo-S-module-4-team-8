@@ -27,12 +27,6 @@ function App() {
       <Header></Header>
       <Routes>
         <Route
-          path="/card/:id"
-          element={<CardDetail
-            cardsToShow={cardsToShow}
-          />}
-        />
-        <Route
           path="/create"
           element={<CreateProject
           />}
