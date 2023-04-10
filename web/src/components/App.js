@@ -5,7 +5,6 @@ import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import CreateProject from "./Main/CreateProject";
 import Landing from "./Main/Landing";
-import CardDetail from "./Main/CardDetail";
 import { useEffect, useState } from 'react';
 import api from '../services/api';
 
