@@ -16,3 +16,13 @@
   background-color: #302c42;
   font-family: "Roboto Mono", monospace;
 }
+
+.container-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main_btn {
+  margin-right: 25px;
+  font-size: 18px !important;
+}

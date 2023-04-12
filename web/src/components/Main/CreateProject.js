@@ -1,4 +1,5 @@
 import api from "../../services/api";
+import { Link } from 'react-router-dom';
 import { useState } from "react";
 import Preview from "./Preview";
 import Form from "./Form";
@@ -124,28 +125,34 @@ function CreateProject() {
   };
 
   return (
-    <main className="main">
-      <Preview
-        imageProfile={imageProfile}
-        imageProject={imageProject}
-        data={data}
-        project={project}
-        avatar={avatar}
-      ></Preview>
-      <Form
-        msgError={msgError}
-        handleChangeInput={handleInput}
-        data={data}
-        info={info}
-        url={url}
-        card={card}
-        handle={handleSend}
-        avatar={avatar}
-        updateAvatar={updateAvatar}
-        project={project}
-        updateProject={updateProject}
-      ></Form>
-    </main>
+    <>
+      <Link to="/">
+        <div className="container-btn"><input type="button" value="Volver" className='sectionForm__form__button--btn main_btn' /></div>
+      </Link>
+      <main className="main">
+
+        <Preview
+          imageProfile={imageProfile}
+          imageProject={imageProject}
+          data={data}
+          project={project}
+          avatar={avatar}
+        ></Preview>
+        <Form
+          msgError={msgError}
+          handleChangeInput={handleInput}
+          data={data}
+          info={info}
+          url={url}
+          card={card}
+          handle={handleSend}
+          avatar={avatar}
+          updateAvatar={updateAvatar}
+          project={project}
+          updateProject={updateProject}
+        ></Form>
+      </main>
+    </>
   );
 }
 
