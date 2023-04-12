@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "Gestor de proyectos",
-    "description": "My User Project Application API"
+    "description": "Para guardar todos tus proyectos de fornma organizada"
   },
   "host": "localhost:4000",
   "basePath": "/",
@@ -23,81 +23,69 @@
           "name": "autor",
           "in": "body",
           "required": true,
-          "description": "Autor del proyecto",
           "type": "string"
         }, 
         {
           "name": "job",
           "in": "body",
           "required": true,
-          "description": "Profesión del autor del proyecto",
           "type": "string"
         }, 
         {
           "name": "image",
           "in": "body",
           "required": true,
-          "description": "Foto del autor del proyecto",
           "type": "string"
         }, 
         {
           "name": "name",
           "in": "body",
           "required": true,
-          "description": "Nombre del proyecto",
           "type": "string"
         },         
         {
           "name": "slogan",
           "in": "body",
           "required": true,
-          "description": "Slogan del proyecto",
           "type": "string"
         },         
         {
           "name": "repo",
           "in": "body",
           "required": true,
-          "description": "Url con el repositorio del proyecto",
           "type": "string"
         },        
          {
           "name": "demo",
           "in": "body",
           "required": true,
-          "description": "Url del proyecto",
           "type": "string"
         },         
         {
           "name": "technologies",
           "in": "body",
           "required": true,
-          "description": "Tecnología usada para crear del proyecto",
           "type": "string"
         },        
          {
           "name": "description",
           "in": "body",
           "required": true,
-          "description": "Descripción del proyecto",
           "type": "string"
         },         
         {
           "name": "photo",
           "in": "body",
           "required": true,
-          "description": "Imagen del proyecto",
           "type": "string"
         },         
         {
           "name": "fk_autors",
           "in": "body",
           "required": true,
-          "description": "Relación entre el autor con cada uno de sus proyectos",
-          "type": "number"
+          "type": "string"
         }
       ],
-      "produces": ["application/json"],
       "responses": {
         "200": {
           "description": "Nuevo proyecto creado"
@@ -116,27 +104,26 @@
         }
       }
     },
-    "/api/projects/detail/{projectId}":{
+    "/api/projects/detail/{projectId}": {
       "get": {
-        "tags": ["Ver detalle de cada proyecto"],
-        "summary": "Abrir cada proyecto para ver toda la información", 
-        "parameters":[
+         "tags": ["Ver detalle de cada proyecto"],
+
+        "description": "Obtener cada proyecto",
+        "parameters": [
           {
             "name": "projectId",
-            "in": "params",
+            "in": "path",
             "required": true,
-            "description": "Id de cada proyecto",
-            "type": "number"
+            "type": "string"
           }
         ],
-        "produces": ["application/json"],
-      "responses": {
-        "200": {
-          "description": "OK"
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
         }
-      }
-    }
-    }
+  }
+}
   },
   "schemes": ["http"],
   "consumes": ["application/json"],
