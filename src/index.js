@@ -10,11 +10,13 @@ server.use(express.json({ limit: "10mb" }));
 server.set("view engine", "ejs")
 
 //arrancar el servidor
-const serverPort = process.env.PORT || 4000;
+const serverPort = process.env.DOCKER_HOST || 4000;
 server.listen(serverPort, () => {
   console.log(`Server listening at http://localhost:${serverPort}`);
 });
 
+
+console.log(process.env);
 //crear conexión con base de datos
 
 let connection; // Aquí almacenaremos la conexión a la base de datos
