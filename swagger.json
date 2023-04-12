@@ -1,0 +1,144 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Gestor de proyectos",
+    "description": "My User Project Application API"
+  },
+  "host": "localhost:4000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Gestor de proyectos",
+      "description": "API para consultar proyectos"
+    }
+  ],
+  "paths": {
+  "/api/projects/add": {
+    "post": {
+      "tags": ["Crear proyectos"],
+      "summary": "Crear nuevo proyecto con toda la información",
+      "parameters": [
+        {
+          "name": "autor",
+          "in": "body",
+          "required": true,
+          "description": "Autor del proyecto",
+          "type": "string"
+        }, 
+        {
+          "name": "job",
+          "in": "body",
+          "required": true,
+          "description": "Profesión del autor del proyecto",
+          "type": "string"
+        }, 
+        {
+          "name": "image",
+          "in": "body",
+          "required": true,
+          "description": "Foto del autor del proyecto",
+          "type": "string"
+        }, 
+        {
+          "name": "name",
+          "in": "body",
+          "required": true,
+          "description": "Nombre del proyecto",
+          "type": "string"
+        },         
+        {
+          "name": "slogan",
+          "in": "body",
+          "required": true,
+          "description": "Slogan del proyecto",
+          "type": "string"
+        },         
+        {
+          "name": "repo",
+          "in": "body",
+          "required": true,
+          "description": "Url con el repositorio del proyecto",
+          "type": "string"
+        },        
+         {
+          "name": "demo",
+          "in": "body",
+          "required": true,
+          "description": "Url del proyecto",
+          "type": "string"
+        },         
+        {
+          "name": "technologies",
+          "in": "body",
+          "required": true,
+          "description": "Tecnología usada para crear del proyecto",
+          "type": "string"
+        },        
+         {
+          "name": "description",
+          "in": "body",
+          "required": true,
+          "description": "Descripción del proyecto",
+          "type": "string"
+        },         
+        {
+          "name": "photo",
+          "in": "body",
+          "required": true,
+          "description": "Imagen del proyecto",
+          "type": "string"
+        },         
+        {
+          "name": "fk_autors",
+          "in": "body",
+          "required": true,
+          "description": "Relación entre el autor con cada uno de sus proyectos",
+          "type": "number"
+        }
+      ],
+      "produces": ["application/json"],
+      "responses": {
+        "200": {
+          "description": "Nuevo proyecto creado"
+        }
+      }
+    }
+  }, 
+    "/api/projects/all": {
+      "get": {
+        "tags": ["Ver proyectos"],
+        "summary": "Ver todos los proyectos guardados en la base de datos",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/projects/detail/{projectId}":{
+      "get": {
+        "tags": ["Ver detalle de cada proyecto"],
+        "summary": "Abrir cada proyecto para ver toda la información", 
+        "parameters":[
+          {
+            "name": "projectId",
+            "in": "params",
+            "required": true,
+            "description": "Id de cada proyecto",
+            "type": "number"
+          }
+        ],
+        "produces": ["application/json"],
+      "responses": {
+        "200": {
+          "description": "OK"
+        }
+      }
+    }
+    }
+  },
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"]
+}

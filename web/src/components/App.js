@@ -11,7 +11,7 @@ import api from '../services/api';
 function App() {
 
   const [projectsCard, setProjectsCard] = useState([])
-  const cardsToShow = projectsCard.slice(0, 4);
+  const cardsToShow = projectsCard;
 
   useEffect(() => {
     api.listProjectApi()
