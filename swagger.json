@@ -5,7 +5,7 @@
     "title": "Gestor de proyectos",
     "description": "Para guardar todos tus proyectos de fornma organizada"
   },
-  "host": "https://gestor-proyectos.onrender.com",
+  "host": "https://localhost:4000",
   "basePath": "/",
   "tags": [
     {
@@ -86,11 +86,12 @@
           "type": "string"
         }
       ],
-      "responses": {
-        "200": {
-          "description": "Nuevo proyecto creado"
+      "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "success": true
+          }
         }
-      }
     }
   }, 
     "/api/projects/all": {
@@ -125,6 +126,7 @@
   }
 }
   },
+  "schemes": ["http"],
   "consumes": ["application/json"],
   "produces": ["application/json"]
 }

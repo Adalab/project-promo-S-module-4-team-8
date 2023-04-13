@@ -84,6 +84,7 @@ server.post("/api/projects/add", async (req, res) => {
   } else {
     const connection = await getConnection();
     const [results] = await connection.query(sqlAutor, valuesAutor);
+    console.log(results);
     let sqlProject =
       "insert into projects (name, slogan, repo, demo, technologies, description, photo, fk_autors ) values (?, ?, ?, ?, ?, ?, ?, ?)";
     let valuesProject = [
