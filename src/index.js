@@ -66,7 +66,7 @@ server.post("/api/projects/add", (req, res) => {
   let sqlAutor = "insert into autors (autor, job, image ) values (?, ?, ?)";
   let valuesAutor = [data.autor, data.job, data.image]
   let response;
-  if (!data.autor || data.job || data.image || data.name || data.slogan || data.repo || data.demo || data.technologies || data.desc || data.photo) {
+  if (!data.autor || !data.job || !data.image || !data.name || !data.slogan || !data.repo || !data.demo || !data.technologies || !data.desc || !data.photo) {
     res.json({
       success: false,
       error: `Mandatory fields:`
