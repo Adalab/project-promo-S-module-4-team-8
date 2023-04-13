@@ -64,40 +64,48 @@ server.get("/api/projects/all", (req, res) => {
 server.post("/api/projects/add", (req, res) => {
   const data = req.body;
   let sqlAutor = "insert into autors (autor, job, image ) values (?, ?, ?)";
-  let valuesAutor = [data.autor, data.job, data.image];
-
-  connection
-    .query(sqlAutor, valuesAutor)
-    .then(([results]) => {
-      let sqlProject =
-        "insert into projects (name, slogan, repo, demo, technologies, description, photo, fk_autors ) values (?, ?, ?, ?, ?, ?, ?, ?)";
-      let valuesProject = [
-        data.name,
-        data.slogan,
-        data.repo,
-        data.demo,
-        data.technologies,
-        data.desc,
-        data.photo,
-        results.insertId,
-      ];
-      connection
-        .query(sqlProject, valuesProject)
-        .then(([results]) => {
-          let response = {
-            success: true,
-            cardURL: `http://localhost:4000/api/projects/detail/${results.insertId}`,
-          };
-          res.json(response);
-        })
-        .catch((err) => {
-          throw err;
-        });
-    })
-    .catch((err) => {
-      throw err;
+  let valuesAutor = [data.autor, data.job, data.image]
+  let response;
+  if (!data.autor || data.job || data.image || data.name || data.slogan || data.repo || data.demo || data.technologies || data.desc || data.photo) {
+    res.json({
+      success: false,
+      error: `Mandatory fields:`
     });
-});
+  } else {
+    connection
+      .query(sqlAutor, valuesAutor)
+      .then(([results]) => {
+        let sqlProject =
+          "insert into projects (name, slogan, repo, demo, technologies, description, photo, fk_autors ) values (?, ?, ?, ?, ?, ?, ?, ?)";
+        let valuesProject = [
+          data.name,
+          data.slogan,
+          data.repo,
+          data.demo,
+          data.technologies,
+          data.desc,
+          data.photo,
+          results.insertId,
+        ];
+        connection
+          .query(sqlProject, valuesProject)
+          .then(([results]) => {
+            response = {
+              success: true,
+              cardURL: `http://localhost:4000/api/projects/detail/${results.insertId}`,
+            };
+            res.json(response);
+          })
+          .catch((err) => {
+            throw err;
+          });
+      })
+
+      .catch((err) => {
+        throw err;
+      })
+  }
+})
 
 server.get("/api/projects/detail/:projectId", (req, res) => {
   const projectId = req.params.projectId;
