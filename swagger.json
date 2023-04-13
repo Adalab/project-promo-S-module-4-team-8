@@ -5,7 +5,7 @@
     "title": "Gestor de proyectos",
     "description": "Para guardar todos tus proyectos de fornma organizada"
   },
-  "host": "https://localhost:4000",
+  "host": "gestor-proyectos.onrender.com",
   "basePath": "/",
   "tags": [
     {
