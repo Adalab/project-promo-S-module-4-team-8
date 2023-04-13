@@ -21,45 +21,55 @@ server.listen(serverPort, () => {
 
 //crear conexión con base de datos
 
-let connection; // Aquí almacenaremos la conexión a la base de datos
-
-mysql
-  .createConnection({
-    host: "sql.freedb.tech",
-    database: "freedb_project-mod-4-tema-8",
-    user: "freedb_root-beafig",
-    password: "nU4ywdU!5VJJ#js",
-  })
-  .then((conn) => {
-    connection = conn;
-    connection
-      .connect()
-      .then(() => {
-        console.log(
-          `Conexión establecida con la base de datos (identificador=${connection.threadId})`
-        );
-      })
-      .catch((err) => {
-        console.error("Error de conexion: " + err.stack);
-      });
-  })
-  .catch((err) => {
-    console.error("Error de configuración: " + err.stack);
+async function getConnection() {
+  const connection = await mysql.createConnection({
+    host: 'sql.freedb.tech',
+    database: 'freedb_project-mod-4-tema-8',
+    user: 'freedb_root-beafig',
+    password: 'nU4ywdU!5VJJ#js',
   });
+  await connection.connect();
+  console.log(
+    `Conexión establecida con la base de datos (identificador=${connection.threadId})`
+  );
+  return connection;
+}
+
+// let connection; // Aquí almacenaremos la conexión a la base de datos
+
+// mysql
+//   .createConnection({
+//     host: "sql.freedb.tech",
+//     database: "freedb_project-mod-4-tema-8",
+//     user: "freedb_root-beafig",
+//     password: "nU4ywdU!5VJJ#js",
+//   })
+//   .then((conn) => {
+//     connection = conn;
+//     connection
+//       .connect()
+//       .then(() => {
+//         console.log(
+//           `Conexión establecida con la base de datos (identificador=${connection.threadId})`
+//         );
+//       })
+//       .catch((err) => {
+//         console.error("Error de conexion: " + err.stack);
+//       });
+//   })
+//   .catch((err) => {
+//     console.error("Error de configuración: " + err.stack);
+//   });
 
 // petición GET al servidor
-server.get("/api/projects/all", (req, res) => {
+server.get("/api/projects/all", async (req, res) => {
   let sql =
     "SELECT * FROM projects, autors WHERE projects.fk_autors = autors.idAutor";
-  connection
-    .query(sql)
-    .then(([results]) => {
-      res.json(results);
-    })
-    .catch((err) => {
-      throw err;
-    });
-});
+  const connection = await getConnection();
+  const [results] = await connection.query(sql)
+  res.json(results);
+  connection.end();
+})
 
 server.post("/api/projects/add", (req, res) => {
   const data = req.body;
@@ -92,7 +102,7 @@ server.post("/api/projects/add", (req, res) => {
           .then(([results]) => {
             response = {
               success: true,
-              cardURL: `https://gestor-proyectos.onrender.com/api/projects/detail/${results.insertId}`,
+              cardURL: `http://localhost:4000/api/projects/detail/${results.insertId}`,
             };
             res.json(response);
           })
