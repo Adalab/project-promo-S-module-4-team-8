@@ -6,7 +6,7 @@ function CardList({ cardsToShowP }) {
   const loqsea = cardsToShowP.map((eachCard) => {
     return (
       <li className="eachCard" key={eachCard.idProjects}>
-        <a href={'http://localhost:4000/api/projects/detail/' + eachCard.idProjects} target='_blank' rel='noreferrer'>
+        <a href={'https://gestor-proyectos.onrender.com/api/projects/detail/' + eachCard.idProjects} target='_blank' rel='noreferrer'>
           <Card data={eachCard} avatar={eachCard.image} />
         </a>
       </li >

@@ -71,7 +71,7 @@ server.get("/api/projects/all", async (req, res) => {
   connection.end();
 })
 
-server.post("/api/projects/add", (req, res) => {
+server.post("/api/projects/add", async (req, res) => {
   const data = req.body;
   let sqlAutor = "insert into autors (autor, job, image ) values (?, ?, ?)";
   let valuesAutor = [data.autor, data.job, data.image]
@@ -82,54 +82,38 @@ server.post("/api/projects/add", (req, res) => {
       error: `Mandatory fields:`
     });
   } else {
-    connection
-      .query(sqlAutor, valuesAutor)
-      .then(([results]) => {
-        let sqlProject =
-          "insert into projects (name, slogan, repo, demo, technologies, description, photo, fk_autors ) values (?, ?, ?, ?, ?, ?, ?, ?)";
-        let valuesProject = [
-          data.name,
-          data.slogan,
-          data.repo,
-          data.demo,
-          data.technologies,
-          data.desc,
-          data.photo,
-          results.insertId,
-        ];
-        connection
-          .query(sqlProject, valuesProject)
-          .then(([results]) => {
-            response = {
-              success: true,
-              cardURL: `http://localhost:4000/api/projects/detail/${results.insertId}`,
-            };
-            res.json(response);
-          })
-          .catch((err) => {
-            throw err;
-          });
-      })
-
-      .catch((err) => {
-        throw err;
-      })
+    const connection = await getConnection();
+    const [results] = await connection.query(sqlAutor, valuesAutor);
+    let sqlProject =
+      "insert into projects (name, slogan, repo, demo, technologies, description, photo, fk_autors ) values (?, ?, ?, ?, ?, ?, ?, ?)";
+    let valuesProject = [
+      data.name,
+      data.slogan,
+      data.repo,
+      data.demo,
+      data.technologies,
+      data.desc,
+      data.photo,
+      results.insertId,
+    ];
+    const [resultsInsert] = await connection.query(sqlProject, valuesProject)
+    response = {
+      success: true,
+      cardURL: `https://gestor-proyectos.onrender.com/api/projects/detail/${results.insertId}`,
+    };
+    res.json(response);
+    connection.end();
   }
-})
+});
 
-server.get("/api/projects/detail/:projectId", (req, res) => {
+server.get("/api/projects/detail/:projectId", async (req, res) => {
   const projectId = req.params.projectId;
-  console.log(projectId);
   const sql = "SELECT * FROM projects, autors WHERE projects.fk_autors = autors.idAutor AND idProjects = ?";
-  connection
-    .query(sql, [projectId])
-    .then(([results]) => {
-      console.log(results);
-      res.render('project_detail', results[0]);
-    })
-    .catch((err) => {
-      throw err;
-    });
+  const connection = await getConnection();
+  const [results] = await connection.query(sql, [projectId])
+  console.log(results);
+  res.render('project_detail', results[0]);
+  connection.end();
 });
 
 //servidor de estáticos
