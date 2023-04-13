@@ -73,15 +73,15 @@ server.get("/api/projects/all", async (req, res) => {
 
 server.post("/api/projects/add", async (req, res) => {
   const data = req.body;
-  let sqlAutor = "insert into autors (autor, job, image ) values (?, ?, ?)";
-  let valuesAutor = [data.autor, data.job, data.image]
-  let response;
+
   if (!data.autor || !data.job || !data.image || !data.name || !data.slogan || !data.repo || !data.demo || !data.technologies || !data.desc || !data.photo) {
     res.json({
       success: false,
       error: `Mandatory fields:`
     });
   } else {
+    let sqlAutor = "insert into autors (autor, job, image ) values (?, ?, ?)";
+    let valuesAutor = [data.autor, data.job, data.image]
     const connection = await getConnection();
     const [results] = await connection.query(sqlAutor, valuesAutor);
     console.log(results);
@@ -98,9 +98,9 @@ server.post("/api/projects/add", async (req, res) => {
       results.insertId,
     ];
     const [resultsInsert] = await connection.query(sqlProject, valuesProject)
-    response = {
+    let response = {
       success: true,
-      cardURL: `https://gestor-proyectos.onrender.com/api/projects/detail/${results.insertId}`,
+      cardURL: `https://gestor-proyectos.onrender.com/api/projects/detail/${resultsInsert.insertId}`,
     };
     res.json(response);
     connection.end();
