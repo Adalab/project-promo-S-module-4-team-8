@@ -1,5 +1,5 @@
 const dataApi = (data) => {
-  return fetch("http://localhost:4000/api/projects/add", {
+  return fetch("https://gestor-proyectos.onrender.com/api/projects/add", {
     method: "POST",
     body: JSON.stringify(data),
     headers: { "Content-type": "application/json" },
@@ -13,7 +13,7 @@ const dataApi = (data) => {
 // obtener el listado
 
 const listProjectApi = () => {
-  return fetch("http://localhost:4000/api/projects/all")
+  return fetch("https://gestor-proyectos.onrender.com/api/projects/all")
     .then((response) => response.json())
     .then((data) => {
       console.log(data);

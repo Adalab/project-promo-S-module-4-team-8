@@ -92,7 +92,7 @@ server.post("/api/projects/add", (req, res) => {
           .then(([results]) => {
             response = {
               success: true,
-              cardURL: `http://localhost:4000/api/projects/detail/${results.insertId}`,
+              cardURL: `https://gestor-proyectos.onrender.com/api/projects/detail/${results.insertId}`,
             };
             res.json(response);
           })
