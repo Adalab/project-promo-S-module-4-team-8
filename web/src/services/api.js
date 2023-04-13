@@ -20,5 +20,5 @@ const listProjectApi = () => {
       return data;
     });
 };
-
-export default { dataApi, listProjectApi };
+const api = { dataApi, listProjectApi }
+export default api;
