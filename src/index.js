@@ -54,11 +54,6 @@ server.get("/api/projects/all", (req, res) => {
   connection
     .query(sql)
     .then(([results]) => {
-      // console.log("Información recuperada:");
-      // results.forEach((result) => {
-      // console.log(result);
-      // });
-
       res.json(results);
     })
     .catch((err) => {
@@ -68,14 +63,12 @@ server.get("/api/projects/all", (req, res) => {
 
 server.post("/api/projects/add", (req, res) => {
   const data = req.body;
-  // console.log(data);
   let sqlAutor = "insert into autors (autor, job, image ) values (?, ?, ?)";
   let valuesAutor = [data.autor, data.job, data.image];
 
   connection
     .query(sqlAutor, valuesAutor)
     .then(([results]) => {
-      // console.log(results);
       let sqlProject =
         "insert into projects (name, slogan, repo, demo, technologies, description, photo, fk_autors ) values (?, ?, ?, ?, ?, ?, ?, ?)";
       let valuesProject = [
@@ -93,7 +86,7 @@ server.post("/api/projects/add", (req, res) => {
         .then(([results]) => {
           let response = {
             success: true,
-            cardURL: `http://localhost:4000/api/projects/${results.insertId}`,
+            cardURL: `http://localhost:4000/api/projects/detail/${results.insertId}`,
           };
           res.json(response);
         })
